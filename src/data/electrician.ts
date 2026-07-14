@@ -1,0 +1,299 @@
+import type { ElectricianConfig } from "@/types/electrician";
+
+export const electricianConfig: ElectricianConfig = {
+  brand: {
+    name: "VoltArc Electrical",
+    tagline: "Safe. Professional. Fast. Done Right the First Time.",
+    contractorLicenseKey: "EC-2024-84721",
+    state: "Texas",
+    liabilityInsuranceLimit: "$2,000,000",
+    address: "4821 Industrial Blvd, Suite 200, Austin, TX 78745",
+    founded: 2009,
+  },
+  emergency: {
+    phone: "(512) 555-0147",
+    smsNumber: "(512) 555-0148",
+    averageOnSiteTime: "35 Mins",
+    dispatcherStatus: "On-Call & Ready",
+  },
+  coverage: [
+    {
+      city: "Austin",
+      zipCodes: ["78701", "78702", "78703", "78704", "78745"],
+    },
+    {
+      city: "Round Rock",
+      zipCodes: ["78664", "78665", "78681"],
+    },
+    {
+      city: "Cedar Park",
+      zipCodes: ["78613", "78615"],
+    },
+    {
+      city: "Georgetown",
+      zipCodes: ["78626", "78627"],
+    },
+    {
+      city: "San Marcos",
+      zipCodes: ["78666", "78667"],
+    },
+    {
+      city: "Kyle",
+      zipCodes: ["78640", "78642"],
+    },
+  ],
+  services: [
+    {
+      id: "emergency-repair",
+      title: "Emergency Electrical Repair",
+      description:
+        "Immediate dispatch for sparking outlets, power failures, and storm damage. Our crews arrive equipped to diagnose and restore power safely within the first visit.",
+      category: "emergency",
+      estimatedBaseCost: "$189",
+      averageCompletionTime: "1-3 hours",
+      urgencyRating: "urgent",
+    },
+    {
+      id: "panel-upgrade",
+      title: "Electrical Panel Upgrade",
+      description:
+        "Full 200-amp panel replacement with code-compliant breakers, arc-fault protection, and comprehensive load testing. Eliminates outdated fuse boxes and fire risks.",
+      category: "residential",
+      estimatedBaseCost: "$2,400",
+      averageCompletionTime: "6-8 hours",
+      urgencyRating: "soon",
+    },
+    {
+      id: "ev-charger-install",
+      title: "EV Charger Installation",
+      description:
+        "Level 2 dedicated circuit installation for Tesla, ChargePoint, and universal EVSE units. Includes permitting, panel assessment, and smart home integration.",
+      category: "smart-home",
+      estimatedBaseCost: "$890",
+      averageCompletionTime: "3-5 hours",
+      urgencyRating: "routine",
+    },
+    {
+      id: "whole-home-rewire",
+      title: "Whole-Home Rewiring",
+      description:
+        "Complete aluminum-to-copper rewiring for aging homes. Replaces hazardous knob-and-tube or aluminum branch circuits with modern Romex wiring.",
+      category: "residential",
+      estimatedBaseCost: "$8,500",
+      averageCompletionTime: "2-4 days",
+      urgencyRating: "soon",
+    },
+    {
+      id: "lighting-design",
+      title: "Custom Lighting Design & Install",
+      description:
+        "Architectural LED recessed lighting, landscape illumination, under-cabinet kitchen lighting, and dimmer system installations throughout your home.",
+      category: "residential",
+      estimatedBaseCost: "$425",
+      averageCompletionTime: "2-4 hours",
+      urgencyRating: "routine",
+    },
+    {
+      id: "commercial-tenant",
+      title: "Commercial Tenant Build-Out",
+      description:
+        "Complete electrical rough-in and finish for retail, restaurant, and office spaces. Code-compliant fire alarm, data cabling, and three-phase power distribution.",
+      category: "commercial",
+      estimatedBaseCost: "$12,000",
+      averageCompletionTime: "1-3 weeks",
+      urgencyRating: "routine",
+    },
+    {
+      id: "smart-home",
+      title: "Smart Home Electrical Integration",
+      description:
+        "Hardwired smart switches, automated lighting scenes, smart thermostat cabling, and centralized home automation panel installation.",
+      category: "smart-home",
+      estimatedBaseCost: "$650",
+      averageCompletionTime: "3-6 hours",
+      urgencyRating: "routine",
+    },
+    {
+      id: "surge-protection",
+      title: "Whole-Home Surge Protection",
+      description:
+        "Industrial-grade surge protector installation at the main panel with point-of-use protection for sensitive electronics and smart appliances.",
+      category: "residential",
+      estimatedBaseCost: "$385",
+      averageCompletionTime: "1-2 hours",
+      urgencyRating: "routine",
+    },
+    {
+      id: "generator-install",
+      title: "Standby Generator Installation",
+      description:
+        "Automatic transfer switch and whole-home backup generator installation. Never lose power during Texas storms again.",
+      category: "emergency",
+      estimatedBaseCost: "$4,200",
+      averageCompletionTime: "1-2 days",
+      urgencyRating: "soon",
+    },
+  ],
+  trust: {
+    masterElectricians: 12,
+    rating: 4.9,
+    totalReviews: 847,
+    yearsInBusiness: 15,
+  },
+  pricing: [
+    {
+      id: "diagnostic",
+      service: "Diagnostic Visit",
+      basePrice: "$89",
+      priceRange: "$89 - $89",
+      description: "Comprehensive electrical safety inspection with thermal imaging and full system diagnosis. Fee waived if you book the repair on the same visit.",
+    },
+    {
+      id: "panel-upgrade",
+      service: "Panel Upgrade (200A)",
+      basePrice: "$2,400",
+      priceRange: "$1,800 - $3,600",
+      description: "Full panel replacement including permits, inspection, and 5-year workmanship warranty. Price varies by amperage and accessibility.",
+    },
+    {
+      id: "ev-charger",
+      service: "EV Charger Installation",
+      basePrice: "$890",
+      priceRange: "$650 - $1,500",
+      description: "Level 2 hardwired or plug-in EVSE installation with dedicated 50A circuit. Includes panel capacity check and city permitting.",
+    },
+    {
+      id: "outlet-install",
+      service: "New Outlet / Receptacle",
+      basePrice: "$185",
+      priceRange: "$145 - $295",
+      description: "New 120V or 240V outlet installation including GFCI/AFCI protection where required by current NEC code.",
+    },
+    {
+      id: "rewiring",
+      service: "Whole-Home Rewiring",
+      basePrice: "$8,500",
+      priceRange: "$6,000 - $15,000",
+      description: "Complete branch circuit rewiring for homes up to 2,500 sq ft. Includes drywall repair credits and post-install inspection.",
+    },
+    {
+      id: "commercial",
+      service: "Commercial Build-Out",
+      basePrice: "$12/sq ft",
+      priceRange: "$8 - $18 / sq ft",
+      description: "Full electrical rough-in and finish for commercial spaces. Includes fire alarm, data cabling, and three-phase distribution.",
+    },
+  ],
+  diagnosticOptions: [
+    {
+      id: "tripped-breaker",
+      label: "Tripped Breakers / Breaker Won't Reset",
+      hazardLevel: "medium",
+      description: "Repeatedly tripping breakers can indicate overloaded circuits, short circuits, or ground faults — all of which pose fire risks.",
+    },
+    {
+      id: "flickering-lights",
+      label: "Flickering or Dimming Lights",
+      hazardLevel: "low",
+      description: "Intermittent flickering often indicates loose connections or voltage fluctuations. Persistent flickering may signal a serious wiring fault.",
+    },
+    {
+      id: "outlet-sparking",
+      label: "Sparking or Buzzing Outlets",
+      hazardLevel: "high",
+      description: "Sparking outlets are an immediate fire hazard. Turn off power at the breaker and call for emergency dispatch immediately.",
+    },
+    {
+      id: "burning-smell",
+      label: "Burning Smell from Panel or Outlets",
+      hazardLevel: "high",
+      description: "A burning odor from electrical components indicates overheating wiring or failing connections. This is a critical emergency.",
+    },
+    {
+      id: "power-outage",
+      label: "Partial Power Outage",
+      hazardLevel: "medium",
+      description: "When only part of your home loses power, it typically indicates a failed breaker, loose connection, or damaged wiring in specific circuits.",
+    },
+    {
+      id: "ev-install",
+      label: "EV Charger / New Appliance Install",
+      hazardLevel: "low",
+      description: "Professional installation ensures proper circuit sizing, permitting, and safe integration with your existing electrical system.",
+    },
+    {
+      id: "panel-upgrade",
+      label: "Outdated Fuse Box or Panel",
+      hazardLevel: "medium",
+      description: "Homes with fuse boxes or panels over 25 years old are at higher risk for electrical fires and may not meet current code requirements.",
+    },
+    {
+      id: "storm-damage",
+      label: "Storm or Water Damage to Electrical",
+      hazardLevel: "high",
+      description: "Water-damaged wiring and panels pose electrocution and fire risks. Do not attempt to use affected circuits until professionally inspected.",
+    },
+  ],
+  faqs: [
+    {
+      question: "How much does a full electrical panel upgrade cost?",
+      answer:
+        "A standard 200-amp panel upgrade in the Austin metro area ranges from $1,800 to $3,600, depending on panel accessibility, amperage requirements, and any sub-panel additions. Our flat-rate pricing includes all permits, inspection fees, and a 5-year workmanship warranty. We never charge hidden fees — what we quote is what you pay.",
+    },
+    {
+      question: "Do I need a permit for an EV charger installation?",
+      answer:
+        "Yes — the city of Austin and most surrounding municipalities require an electrical permit for any new dedicated circuit installation, including Level 2 EV chargers. VoltArc handles all permitting and inspection scheduling as part of our standard EV charger installation service. You don't need to deal with any paperwork.",
+    },
+    {
+      question: "What should I do during a complete power outage?",
+      answer:
+        "First, check if your neighbors are also affected — if so, it's a utility outage. If only your home is affected, check your main breaker panel for tripped breakers. Do NOT touch any sparking outlets or panels. Turn off major appliances to prevent surge damage when power returns. If the issue persists, call our emergency dispatch line at (512) 555-0147 for immediate assistance.",
+    },
+    {
+      question: "Are your electricians licensed and insured?",
+      answer:
+        "Absolutely. Every VoltArc technician holds an active Texas State Electrical Contractor License (EC-2024-84721). We carry $2,000,000 in general liability insurance and full workers' compensation coverage. Our team includes 12 Master Electricians with a combined 180+ years of field experience. All technicians are background-checked, drug-tested, and continuously trained on the latest NEC code updates.",
+    },
+    {
+      question: "How quickly can you respond to an electrical emergency?",
+      answer:
+        "Our average emergency response time is 35 minutes across the greater Austin metro. We maintain a dedicated on-call emergency crew 24 hours a day, 7 days a week, 365 days a year. For life-threatening situations involving active sparks, smoke, or electrical fire, call 911 first, then contact our emergency line.",
+    },
+    {
+      question: "Do you offer financing for larger electrical projects?",
+      answer:
+        "Yes. We partner with several financing providers to offer 0% APR for 12 months and low-rate extended payment plans for panel upgrades, whole-home rewiring, and generator installations. Ask your project manager for current financing options during your free estimate.",
+    },
+  ],
+  testimonials: [
+    {
+      name: "Sarah Mitchell",
+      location: "Austin, TX",
+      rating: 5,
+      text: "Our panel was sparking and we lost power to half the house at 2 AM. VoltArc had a technician at our door in 30 minutes. He diagnosed the failed breaker, replaced it on the spot, and even checked the rest of the house for free. Absolutely professional.",
+      serviceType: "Emergency Repair",
+    },
+    {
+      name: "David & Lisa Park",
+      location: "Round Rock, TX",
+      rating: 5,
+      text: "We needed a Tesla wall charger installed and VoltArc made the entire process seamless. They handled the permit, confirmed our panel had capacity, and completed the install in one afternoon. The charging station works flawlessly.",
+      serviceType: "EV Charger Installation",
+    },
+    {
+      name: "Michael Torres",
+      location: "Cedar Park, TX",
+      rating: 5,
+      text: "VoltArc upgraded our 1970s fuse box to a modern 200-amp panel. The crew was meticulous — they laid down floor protection, cleaned up every wire clip, and even patched the drywall. You'd never know they were here. Outstanding craftsmanship.",
+      serviceType: "Panel Upgrade",
+    },
+    {
+      name: "Jennifer Coleman",
+      location: "Georgetown, TX",
+      rating: 5,
+      text: "As a restaurant owner, I needed a reliable electrician for our commercial build-out. VoltArc's team wired our entire kitchen, installed our fire alarm system, and had everything inspected on schedule. They're the only electrician I trust with my business.",
+      serviceType: "Commercial Build-Out",
+    },
+  ],
+};
