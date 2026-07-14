@@ -38,16 +38,23 @@ export function FAQAccordion() {
                   >
                     <span className="text-base font-semibold text-slate-900">{faq.question}</span>
                     <ChevronDown
-                      className={`h-5 w-5 shrink-0 text-slate-400 transition-transform duration-200 ${
+                      className={`h-5 w-5 shrink-0 text-slate-400 transition-transform duration-300 ease-in-out ${
                         isOpen ? "rotate-180" : ""
                       }`}
                     />
                   </button>
-                  {isOpen && (
-                    <div className="px-5 pb-5">
-                      <p className="text-sm text-slate-600 leading-relaxed">{faq.answer}</p>
+                  <div
+                    className="grid transition-all duration-300 ease-in-out"
+                    style={{
+                      gridTemplateRows: isOpen ? "1fr" : "0fr",
+                    }}
+                  >
+                    <div className="overflow-hidden">
+                      <div className="px-5 pb-5">
+                        <p className="text-sm text-slate-600 leading-relaxed">{faq.answer}</p>
+                      </div>
                     </div>
-                  )}
+                  </div>
                 </div>
               </StaggerItem>
             );

@@ -1,6 +1,7 @@
 "use client";
 
 import { Phone, Mail, MapPin, Clock, Shield, ArrowUp } from "lucide-react";
+import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
 import { electricianConfig } from "@/data/electrician";
 
@@ -30,6 +31,27 @@ export function Footer() {
             </div>
 
             <div>
+              <h3 className="text-sm font-bold text-white mb-4">Quick Links</h3>
+              <div className="space-y-2">
+                {[
+                  { href: "/", label: "Home" },
+                  { href: "/about", label: "About Us" },
+                  { href: "/services", label: "Services" },
+                  { href: "/gallery", label: "Gallery" },
+                  { href: "/contact", label: "Contact" },
+                ].map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="block text-sm hover:text-white transition-colors min-h-[36px] flex items-center"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div>
               <h3 className="text-sm font-bold text-white mb-4">Contact</h3>
               <div className="space-y-3">
                 <a href={`tel:${config.emergency.phone.replace(/\D/g, "")}`} className="flex items-center gap-2 text-sm hover:text-white transition-colors min-h-[48px]">
@@ -44,15 +66,6 @@ export function Footer() {
                   <MapPin className="h-4 w-4 text-slate-500 mt-0.5 shrink-0" />
                   {config.brand.address}
                 </div>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-sm font-bold text-white mb-4">Service Areas</h3>
-              <div className="grid grid-cols-2 gap-1">
-                {config.coverage.map((area) => (
-                  <div key={area.city} className="text-sm py-1">{area.city}</div>
-                ))}
               </div>
             </div>
 
