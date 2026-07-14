@@ -1,3 +1,4 @@
+import { Navbar } from "@/components/Navbar";
 import { EmergencyHeader } from "@/sections/EmergencyHeader";
 import { HeroSection } from "@/sections/HeroSection";
 import { CredibilityBoard } from "@/sections/CredibilityBoard";
@@ -15,6 +16,7 @@ export default function Home() {
   return (
     <>
       <EmergencyHeader />
+      <Navbar />
       <HeroSection />
       <CredibilityBoard />
       <DiagnosticTool />
