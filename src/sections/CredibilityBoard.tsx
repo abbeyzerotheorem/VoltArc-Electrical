@@ -43,18 +43,18 @@ const metrics = [
 
 export function CredibilityBoard() {
   return (
-    <section className="bg-white border-b border-slate-200">
+    <section className="bg-white border-b border-slate-200 content-visibility-auto">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
-        <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {metrics.map((metric) => (
             <StaggerItem key={metric.label}>
-              <div className="text-center p-6 rounded-xl border border-slate-200 hover:border-slate-300 transition-colors">
-                <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl ${metric.bg} mb-3`}>
-                  <metric.icon className={`h-6 w-6 ${metric.color}`} />
+              <div className="group text-center p-5 sm:p-6 rounded-xl border border-slate-200 transition-all duration-300 hover:border-slate-300 hover:shadow-card-hover">
+                <div className={`inline-flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-xl ${metric.bg} mb-3 group-hover:scale-110 transition-transform duration-300`}>
+                  <metric.icon className={`h-5 w-5 sm:h-6 sm:w-6 ${metric.color}`} />
                 </div>
-                <div className="text-2xl sm:text-3xl font-bold text-slate-900">{metric.value}</div>
-                <div className="text-sm font-semibold text-slate-700 mt-1">{metric.label}</div>
-                <div className="text-xs text-slate-500 mt-1">{metric.sublabel}</div>
+                <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900">{metric.value}</div>
+                <div className="text-xs sm:text-sm font-semibold text-slate-700 mt-1">{metric.label}</div>
+                <div className="text-[10px] sm:text-xs text-slate-500 mt-1">{metric.sublabel}</div>
               </div>
             </StaggerItem>
           ))}

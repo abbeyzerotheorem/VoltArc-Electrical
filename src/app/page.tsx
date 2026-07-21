@@ -17,15 +17,17 @@ export default function Home() {
     <>
       <EmergencyHeader />
       <Navbar />
-      <HeroSection />
-      <CredibilityBoard />
-      <DiagnosticTool />
-      <ServicesGrid />
-      <CredibilityVault />
-      <PricingMatrix />
-      <SafetyOath />
-      <Testimonials />
-      <FAQAccordion />
+      <main id="main-content" className="flex-1">
+        <HeroSection />
+        <CredibilityBoard />
+        <DiagnosticTool />
+        <ServicesGrid />
+        <CredibilityVault />
+        <PricingMatrix />
+        <SafetyOath />
+        <Testimonials />
+        <FAQAccordion />
+      </main>
       <Footer />
       <MobileRibbon />
     </>

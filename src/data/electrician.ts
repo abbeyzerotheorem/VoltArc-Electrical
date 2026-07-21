@@ -17,37 +17,18 @@ export const electricianConfig: ElectricianConfig = {
     dispatcherStatus: "On-Call & Ready",
   },
   coverage: [
-    {
-      city: "Austin",
-      zipCodes: ["78701", "78702", "78703", "78704", "78745"],
-    },
-    {
-      city: "Round Rock",
-      zipCodes: ["78664", "78665", "78681"],
-    },
-    {
-      city: "Cedar Park",
-      zipCodes: ["78613", "78615"],
-    },
-    {
-      city: "Georgetown",
-      zipCodes: ["78626", "78627"],
-    },
-    {
-      city: "San Marcos",
-      zipCodes: ["78666", "78667"],
-    },
-    {
-      city: "Kyle",
-      zipCodes: ["78640", "78642"],
-    },
+    { city: "Austin", zipCodes: ["78701", "78702", "78703", "78704", "78745"] },
+    { city: "Round Rock", zipCodes: ["78664", "78665", "78681"] },
+    { city: "Cedar Park", zipCodes: ["78613", "78615"] },
+    { city: "Georgetown", zipCodes: ["78626", "78627"] },
+    { city: "San Marcos", zipCodes: ["78666", "78667"] },
+    { city: "Kyle", zipCodes: ["78640", "78642"] },
   ],
   services: [
     {
       id: "emergency-repair",
       title: "Emergency Electrical Repair",
-      description:
-        "Immediate dispatch for sparking outlets, power failures, and storm damage. Our crews arrive equipped to diagnose and restore power safely within the first visit.",
+      description: "Immediate dispatch for sparking outlets, power failures, and storm damage. Our crews arrive equipped to diagnose and restore power safely within the first visit.",
       category: "emergency",
       estimatedBaseCost: "$189",
       averageCompletionTime: "1-3 hours",
@@ -56,8 +37,7 @@ export const electricianConfig: ElectricianConfig = {
     {
       id: "panel-upgrade",
       title: "Electrical Panel Upgrade",
-      description:
-        "Full 200-amp panel replacement with code-compliant breakers, arc-fault protection, and comprehensive load testing. Eliminates outdated fuse boxes and fire risks.",
+      description: "Full 200-amp panel replacement with code-compliant breakers, arc-fault protection, and comprehensive load testing. Eliminates outdated fuse boxes and fire risks.",
       category: "residential",
       estimatedBaseCost: "$2,400",
       averageCompletionTime: "6-8 hours",
@@ -66,8 +46,7 @@ export const electricianConfig: ElectricianConfig = {
     {
       id: "ev-charger-install",
       title: "EV Charger Installation",
-      description:
-        "Level 2 dedicated circuit installation for Tesla, ChargePoint, and universal EVSE units. Includes permitting, panel assessment, and smart home integration.",
+      description: "Level 2 dedicated circuit installation for Tesla, ChargePoint, and universal EVSE units. Includes permitting, panel assessment, and smart home integration.",
       category: "smart-home",
       estimatedBaseCost: "$890",
       averageCompletionTime: "3-5 hours",
@@ -76,8 +55,7 @@ export const electricianConfig: ElectricianConfig = {
     {
       id: "whole-home-rewire",
       title: "Whole-Home Rewiring",
-      description:
-        "Complete aluminum-to-copper rewiring for aging homes. Replaces hazardous knob-and-tube or aluminum branch circuits with modern Romex wiring.",
+      description: "Complete aluminum-to-copper rewiring for aging homes. Replaces hazardous knob-and-tube or aluminum branch circuits with modern Romex wiring.",
       category: "residential",
       estimatedBaseCost: "$8,500",
       averageCompletionTime: "2-4 days",
@@ -86,8 +64,7 @@ export const electricianConfig: ElectricianConfig = {
     {
       id: "lighting-design",
       title: "Custom Lighting Design & Install",
-      description:
-        "Architectural LED recessed lighting, landscape illumination, under-cabinet kitchen lighting, and dimmer system installations throughout your home.",
+      description: "Architectural LED recessed lighting, landscape illumination, under-cabinet kitchen lighting, and dimmer system installations throughout your home.",
       category: "residential",
       estimatedBaseCost: "$425",
       averageCompletionTime: "2-4 hours",
@@ -96,8 +73,7 @@ export const electricianConfig: ElectricianConfig = {
     {
       id: "commercial-tenant",
       title: "Commercial Tenant Build-Out",
-      description:
-        "Complete electrical rough-in and finish for retail, restaurant, and office spaces. Code-compliant fire alarm, data cabling, and three-phase power distribution.",
+      description: "Complete electrical rough-in and finish for retail, restaurant, and office spaces. Code-compliant fire alarm, data cabling, and three-phase power distribution.",
       category: "commercial",
       estimatedBaseCost: "$12,000",
       averageCompletionTime: "1-3 weeks",
@@ -106,8 +82,7 @@ export const electricianConfig: ElectricianConfig = {
     {
       id: "smart-home",
       title: "Smart Home Electrical Integration",
-      description:
-        "Hardwired smart switches, automated lighting scenes, smart thermostat cabling, and centralized home automation panel installation.",
+      description: "Hardwired smart switches, automated lighting scenes, smart thermostat cabling, and centralized home automation panel installation.",
       category: "smart-home",
       estimatedBaseCost: "$650",
       averageCompletionTime: "3-6 hours",
@@ -116,8 +91,7 @@ export const electricianConfig: ElectricianConfig = {
     {
       id: "surge-protection",
       title: "Whole-Home Surge Protection",
-      description:
-        "Industrial-grade surge protector installation at the main panel with point-of-use protection for sensitive electronics and smart appliances.",
+      description: "Industrial-grade surge protector installation at the main panel with point-of-use protection for sensitive electronics and smart appliances.",
       category: "residential",
       estimatedBaseCost: "$385",
       averageCompletionTime: "1-2 hours",
@@ -126,8 +100,7 @@ export const electricianConfig: ElectricianConfig = {
     {
       id: "generator-install",
       title: "Standby Generator Installation",
-      description:
-        "Automatic transfer switch and whole-home backup generator installation. Never lose power during Texas storms again.",
+      description: "Automatic transfer switch and whole-home backup generator installation. Never lose power during Texas storms again.",
       category: "emergency",
       estimatedBaseCost: "$4,200",
       averageCompletionTime: "1-2 days",
@@ -185,115 +158,134 @@ export const electricianConfig: ElectricianConfig = {
     },
   ],
   diagnosticOptions: [
-    {
-      id: "tripped-breaker",
-      label: "Tripped Breakers / Breaker Won't Reset",
-      hazardLevel: "medium",
-      description: "Repeatedly tripping breakers can indicate overloaded circuits, short circuits, or ground faults — all of which pose fire risks.",
-    },
-    {
-      id: "flickering-lights",
-      label: "Flickering or Dimming Lights",
-      hazardLevel: "low",
-      description: "Intermittent flickering often indicates loose connections or voltage fluctuations. Persistent flickering may signal a serious wiring fault.",
-    },
-    {
-      id: "outlet-sparking",
-      label: "Sparking or Buzzing Outlets",
-      hazardLevel: "high",
-      description: "Sparking outlets are an immediate fire hazard. Turn off power at the breaker and call for emergency dispatch immediately.",
-    },
-    {
-      id: "burning-smell",
-      label: "Burning Smell from Panel or Outlets",
-      hazardLevel: "high",
-      description: "A burning odor from electrical components indicates overheating wiring or failing connections. This is a critical emergency.",
-    },
-    {
-      id: "power-outage",
-      label: "Partial Power Outage",
-      hazardLevel: "medium",
-      description: "When only part of your home loses power, it typically indicates a failed breaker, loose connection, or damaged wiring in specific circuits.",
-    },
-    {
-      id: "ev-install",
-      label: "EV Charger / New Appliance Install",
-      hazardLevel: "low",
-      description: "Professional installation ensures proper circuit sizing, permitting, and safe integration with your existing electrical system.",
-    },
-    {
-      id: "panel-upgrade",
-      label: "Outdated Fuse Box or Panel",
-      hazardLevel: "medium",
-      description: "Homes with fuse boxes or panels over 25 years old are at higher risk for electrical fires and may not meet current code requirements.",
-    },
-    {
-      id: "storm-damage",
-      label: "Storm or Water Damage to Electrical",
-      hazardLevel: "high",
-      description: "Water-damaged wiring and panels pose electrocution and fire risks. Do not attempt to use affected circuits until professionally inspected.",
-    },
+    { id: "tripped-breaker", label: "Tripped Breakers / Breaker Won't Reset", hazardLevel: "medium", description: "Repeatedly tripping breakers can indicate overloaded circuits, short circuits, or ground faults — all of which pose fire risks." },
+    { id: "flickering-lights", label: "Flickering or Dimming Lights", hazardLevel: "low", description: "Intermittent flickering often indicates loose connections or voltage fluctuations. Persistent flickering may signal a serious wiring fault." },
+    { id: "outlet-sparking", label: "Sparking or Buzzing Outlets", hazardLevel: "high", description: "Sparking outlets are an immediate fire hazard. Turn off power at the breaker and call for emergency dispatch immediately." },
+    { id: "burning-smell", label: "Burning Smell from Panel or Outlets", hazardLevel: "high", description: "A burning odor from electrical components indicates overheating wiring or failing connections. This is a critical emergency." },
+    { id: "power-outage", label: "Partial Power Outage", hazardLevel: "medium", description: "When only part of your home loses power, it typically indicates a failed breaker, loose connection, or damaged wiring in specific circuits." },
+    { id: "ev-install", label: "EV Charger / New Appliance Install", hazardLevel: "low", description: "Professional installation ensures proper circuit sizing, permitting, and safe integration with your existing electrical system." },
+    { id: "panel-upgrade", label: "Outdated Fuse Box or Panel", hazardLevel: "medium", description: "Homes with fuse boxes or panels over 25 years old are at higher risk for electrical fires and may not meet current code requirements." },
+    { id: "storm-damage", label: "Storm or Water Damage to Electrical", hazardLevel: "high", description: "Water-damaged wiring and panels pose electrocution and fire risks. Do not attempt to use affected circuits until professionally inspected." },
   ],
   faqs: [
-    {
-      question: "How much does a full electrical panel upgrade cost?",
-      answer:
-        "A standard 200-amp panel upgrade in the Austin metro area ranges from $1,800 to $3,600, depending on panel accessibility, amperage requirements, and any sub-panel additions. Our flat-rate pricing includes all permits, inspection fees, and a 5-year workmanship warranty. We never charge hidden fees — what we quote is what you pay.",
-    },
-    {
-      question: "Do I need a permit for an EV charger installation?",
-      answer:
-        "Yes — the city of Austin and most surrounding municipalities require an electrical permit for any new dedicated circuit installation, including Level 2 EV chargers. VoltArc handles all permitting and inspection scheduling as part of our standard EV charger installation service. You don't need to deal with any paperwork.",
-    },
-    {
-      question: "What should I do during a complete power outage?",
-      answer:
-        "First, check if your neighbors are also affected — if so, it's a utility outage. If only your home is affected, check your main breaker panel for tripped breakers. Do NOT touch any sparking outlets or panels. Turn off major appliances to prevent surge damage when power returns. If the issue persists, call our emergency dispatch line at (512) 555-0147 for immediate assistance.",
-    },
-    {
-      question: "Are your electricians licensed and insured?",
-      answer:
-        "Absolutely. Every VoltArc technician holds an active Texas State Electrical Contractor License (EC-2024-84721). We carry $2,000,000 in general liability insurance and full workers' compensation coverage. Our team includes 12 Master Electricians with a combined 180+ years of field experience. All technicians are background-checked, drug-tested, and continuously trained on the latest NEC code updates.",
-    },
-    {
-      question: "How quickly can you respond to an electrical emergency?",
-      answer:
-        "Our average emergency response time is 35 minutes across the greater Austin metro. We maintain a dedicated on-call emergency crew 24 hours a day, 7 days a week, 365 days a year. For life-threatening situations involving active sparks, smoke, or electrical fire, call 911 first, then contact our emergency line.",
-    },
-    {
-      question: "Do you offer financing for larger electrical projects?",
-      answer:
-        "Yes. We partner with several financing providers to offer 0% APR for 12 months and low-rate extended payment plans for panel upgrades, whole-home rewiring, and generator installations. Ask your project manager for current financing options during your free estimate.",
-    },
+    { question: "How much does a full electrical panel upgrade cost?", answer: "A standard 200-amp panel upgrade in the Austin metro area ranges from $1,800 to $3,600, depending on panel accessibility, amperage requirements, and any sub-panel additions. Our flat-rate pricing includes all permits, inspection fees, and a 5-year workmanship warranty. We never charge hidden fees — what we quote is what you pay." },
+    { question: "Do I need a permit for an EV charger installation?", answer: "Yes — the city of Austin and most surrounding municipalities require an electrical permit for any new dedicated circuit installation, including Level 2 EV chargers. VoltArc handles all permitting and inspection scheduling as part of our standard EV charger installation service. You don't need to deal with any paperwork." },
+    { question: "What should I do during a complete power outage?", answer: "First, check if your neighbors are also affected — if so, it's a utility outage. If only your home is affected, check your main breaker panel for tripped breakers. Do NOT touch any sparking outlets or panels. Turn off major appliances to prevent surge damage when power returns. If the issue persists, call our emergency dispatch line at (512) 555-0147 for immediate assistance." },
+    { question: "Are your electricians licensed and insured?", answer: "Absolutely. Every VoltArc technician holds an active Texas State Electrical Contractor License (EC-2024-84721). We carry $2,000,000 in general liability insurance and full workers' compensation coverage. Our team includes 12 Master Electricians with a combined 180+ years of field experience. All technicians are background-checked, drug-tested, and continuously trained on the latest NEC code updates." },
+    { question: "How quickly can you respond to an electrical emergency?", answer: "Our average emergency response time is 35 minutes across the greater Austin metro. We maintain a dedicated on-call emergency crew 24 hours a day, 7 days a week, 365 days a year. For life-threatening situations involving active sparks, smoke, or electrical fire, call 911 first, then contact our emergency line." },
+    { question: "Do you offer financing for larger electrical projects?", answer: "Yes. We partner with several financing providers to offer 0% APR for 12 months and low-rate extended payment plans for panel upgrades, whole-home rewiring, and generator installations. Ask your project manager for current financing options during your free estimate." },
   ],
   testimonials: [
+    { name: "Sarah Mitchell", location: "Austin, TX", rating: 5, text: "Our panel was sparking and we lost power to half the house at 2 AM. VoltArc had a technician at our door in 30 minutes. He diagnosed the failed breaker, replaced it on the spot, and even checked the rest of the house for free. Absolutely professional.", serviceType: "Emergency Repair" },
+    { name: "David & Lisa Park", location: "Round Rock, TX", rating: 5, text: "We needed a Tesla wall charger installed and VoltArc made the entire process seamless. They handled the permit, confirmed our panel had capacity, and completed the install in one afternoon. The charging station works flawlessly.", serviceType: "EV Charger Installation" },
+    { name: "Michael Torres", location: "Cedar Park, TX", rating: 5, text: "VoltArc upgraded our 1970s fuse box to a modern 200-amp panel. The crew was meticulous — they laid down floor protection, cleaned up every wire clip, and even patched the drywall. You'd never know they were here. Outstanding craftsmanship.", serviceType: "Panel Upgrade" },
+    { name: "Jennifer Coleman", location: "Georgetown, TX", rating: 5, text: "As a restaurant owner, I needed a reliable electrician for our commercial build-out. VoltArc's team wired our entire kitchen, installed our fire alarm system, and had everything inspected on schedule. They're the only electrician I trust with my business.", serviceType: "Commercial Build-Out" },
+  ],
+  galleryProjects: [
     {
-      name: "Sarah Mitchell",
-      location: "Austin, TX",
-      rating: 5,
-      text: "Our panel was sparking and we lost power to half the house at 2 AM. VoltArc had a technician at our door in 30 minutes. He diagnosed the failed breaker, replaced it on the spot, and even checked the rest of the house for free. Absolutely professional.",
-      serviceType: "Emergency Repair",
+      title: "200A Panel Upgrade",
+      category: "Residential",
+      description: "Complete panel replacement from outdated fuse box to modern 200-amp breaker panel with AFCI protection.",
+      gradient: "from-amber-500/20 to-amber-600/5",
     },
     {
-      name: "David & Lisa Park",
-      location: "Round Rock, TX",
-      rating: 5,
-      text: "We needed a Tesla wall charger installed and VoltArc made the entire process seamless. They handled the permit, confirmed our panel had capacity, and completed the install in one afternoon. The charging station works flawlessly.",
-      serviceType: "EV Charger Installation",
+      title: "Tesla Wall Connector Install",
+      category: "Smart Home / EV",
+      description: "Level 2 dedicated circuit installation with panel capacity assessment and smart home integration.",
+      gradient: "from-blue-500/20 to-blue-600/5",
     },
     {
-      name: "Michael Torres",
-      location: "Cedar Park, TX",
-      rating: 5,
-      text: "VoltArc upgraded our 1970s fuse box to a modern 200-amp panel. The crew was meticulous — they laid down floor protection, cleaned up every wire clip, and even patched the drywall. You'd never know they were here. Outstanding craftsmanship.",
-      serviceType: "Panel Upgrade",
+      title: "Restaurant Kitchen Build-Out",
+      category: "Commercial",
+      description: "Three-phase power distribution, commercial fire alarm system, and code-compliant kitchen wiring for a new Round Rock restaurant.",
+      gradient: "from-emerald-500/20 to-emerald-600/5",
     },
     {
-      name: "Jennifer Coleman",
-      location: "Georgetown, TX",
-      rating: 5,
-      text: "As a restaurant owner, I needed a reliable electrician for our commercial build-out. VoltArc's team wired our entire kitchen, installed our fire alarm system, and had everything inspected on schedule. They're the only electrician I trust with my business.",
-      serviceType: "Commercial Build-Out",
+      title: "Whole-Home Rewiring",
+      category: "Residential",
+      description: "Aluminum-to-copper rewiring for a 1970s home — replacing 40+ year old branch circuits with modern Romex.",
+      gradient: "from-red-500/20 to-red-600/5",
+    },
+    {
+      title: "Smart Home Integration",
+      category: "Smart Home / EV",
+      description: "Hardwired smart switches, automated lighting scenes, and centralized home automation panel in a new Cedar Park build.",
+      gradient: "from-amber-500/20 to-blue-500/10",
+    },
+    {
+      title: "Emergency Storm Damage Repair",
+      category: "Emergency",
+      description: "Full diagnostic and restoration after lightning strike damaged main panel and sub-panel wiring.",
+      gradient: "from-red-500/20 to-amber-500/10",
+    },
+  ],
+  safetyPromises: [
+    {
+      title: "100% Satisfaction Guarantee",
+      description: "If you're not completely satisfied with our work, we'll come back and make it right — at no additional charge. That's the VoltArc promise.",
+      iconName: "Shield",
+    },
+    {
+      title: "Background-Checked Technicians",
+      description: "Every team member undergoes comprehensive federal background checks, drug screening, and continuous ethical training before entering your home.",
+      iconName: "UserCheck",
+    },
+    {
+      title: "Meticulous Cleanliness Protocol",
+      description: "Shoe boot covers on every visit. Drop cloths on every work surface. Complete debris removal and cleanup before we leave. Your home stays pristine.",
+      iconName: "Sparkles",
+    },
+    {
+      title: "No-Risk Upfront Pricing",
+      description: "You approve the exact price before any work begins. No hourly runarounds, no surprise charges, no hidden fees — guaranteed.",
+      iconName: "ThumbsUp",
+    },
+  ],
+  credentials: [
+    {
+      iconName: "ShieldCheck",
+      title: "Licensed Contractor",
+      detail: "EC-2024-84721",
+      subtext: "Active Texas State License",
+      color: "text-blue-600",
+      bg: "bg-blue-50",
+      border: "border-blue-200",
+    },
+    {
+      iconName: "Shield",
+      title: "Fully Insured",
+      detail: "$2,000,000 Coverage",
+      subtext: "General Liability & Workers' Comp",
+      color: "text-emerald-600",
+      bg: "bg-emerald-50",
+      border: "border-emerald-200",
+    },
+    {
+      iconName: "Award",
+      title: "Master Electricians",
+      detail: "12 Certified",
+      subtext: "Highest Industry Certification",
+      color: "text-amber-600",
+      bg: "bg-amber-50",
+      border: "border-amber-200",
+    },
+    {
+      iconName: "FileCheck",
+      title: "Bonded & Guaranteed",
+      detail: "Surety Bonded",
+      subtext: "100% Workmanship Warranty",
+      color: "text-blue-600",
+      bg: "bg-blue-50",
+      border: "border-blue-200",
+    },
+    {
+      iconName: "BadgeCheck",
+      title: "Background Checked",
+      detail: "100% Verified Team",
+      subtext: "Drug-Tested & Insured Technicians",
+      color: "text-emerald-600",
+      bg: "bg-emerald-50",
+      border: "border-emerald-200",
     },
   ],
 };

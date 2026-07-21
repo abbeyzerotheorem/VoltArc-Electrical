@@ -43,7 +43,7 @@ export function Footer() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="block text-sm hover:text-white transition-colors min-h-[36px] flex items-center"
+                    className="block text-sm hover:text-white transition-colors duration-200 min-h-[36px] flex items-center"
                   >
                     {link.label}
                   </Link>
@@ -54,11 +54,11 @@ export function Footer() {
             <div>
               <h3 className="text-sm font-bold text-white mb-4">Contact</h3>
               <div className="space-y-3">
-                <a href={`tel:${config.emergency.phone.replace(/\D/g, "")}`} className="flex items-center gap-2 text-sm hover:text-white transition-colors min-h-[48px]">
+                <a href={`tel:${config.emergency.phone.replace(/\D/g, "")}`} className="flex items-center gap-2 text-sm hover:text-white transition-colors duration-200 min-h-[48px]">
                   <Phone className="h-4 w-4 text-amber-500" />
                   {config.emergency.phone}
                 </a>
-                <a href="mailto:dispatch@voltarcelectrical.com" className="flex items-center gap-2 text-sm hover:text-white transition-colors min-h-[48px]">
+                <a href="mailto:dispatch@voltarcelectrical.com" className="flex items-center gap-2 text-sm hover:text-white transition-colors duration-200 min-h-[48px]">
                   <Mail className="h-4 w-4 text-blue-500" />
                   dispatch@voltarcelectrical.com
                 </a>
@@ -104,7 +104,7 @@ export function Footer() {
           </p>
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="inline-flex items-center gap-1 text-xs text-slate-500 hover:text-white transition-colors min-h-[48px] min-w-[48px] justify-center"
+            className="inline-flex items-center gap-1 text-xs text-slate-500 hover:text-white transition-colors duration-200 min-h-[48px] min-w-[48px] justify-center"
             aria-label="Back to top"
           >
             <ArrowUp className="h-4 w-4" />

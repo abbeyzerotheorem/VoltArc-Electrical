@@ -6,45 +6,6 @@ import { electricianConfig } from "@/data/electrician";
 
 const config = electricianConfig;
 
-const projects = [
-  {
-    title: "200A Panel Upgrade",
-    category: "Residential",
-    description: "Complete panel replacement from outdated fuse box to modern 200-amp breaker panel with AFCI protection.",
-    gradient: "from-amber-500/20 to-amber-600/5",
-  },
-  {
-    title: "Tesla Wall Connector Install",
-    category: "Smart Home / EV",
-    description: "Level 2 dedicated circuit installation with panel capacity assessment and smart home integration.",
-    gradient: "from-blue-500/20 to-blue-600/5",
-  },
-  {
-    title: "Restaurant Kitchen Build-Out",
-    category: "Commercial",
-    description: "Three-phase power distribution, commercial fire alarm system, and code-compliant kitchen wiring for a new Round Rock restaurant.",
-    gradient: "from-emerald-500/20 to-emerald-600/5",
-  },
-  {
-    title: "Whole-Home Rewiring",
-    category: "Residential",
-    description: "Aluminum-to-copper rewiring for a 1970s home — replacing 40+ year old branch circuits with modern Romex.",
-    gradient: "from-red-500/20 to-red-600/5",
-  },
-  {
-    title: "Smart Home Integration",
-    category: "Smart Home / EV",
-    description: "Hardwired smart switches, automated lighting scenes, and centralized home automation panel in a new Cedar Park build.",
-    gradient: "from-amber-500/20 to-blue-500/10",
-  },
-  {
-    title: "Emergency Storm Damage Repair",
-    category: "Emergency",
-    description: "Full diagnostic and restoration after lightning strike damaged main panel and sub-panel wiring.",
-    gradient: "from-red-500/20 to-amber-500/10",
-  },
-];
-
 export const metadata: Metadata = {
   title: "Project Gallery — Our Recent Electrical Work",
   description:
@@ -80,14 +41,15 @@ export default function GalleryPage() {
         <section className="bg-white">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
             <StaggerContainer className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {projects.map((project) => (
+              {config.galleryProjects.map((project) => (
                 <StaggerItem key={project.title}>
-                  <div className="group h-full rounded-xl border border-slate-200 overflow-hidden transition-all hover:border-slate-300 hover:shadow-lg flex flex-col">
+                  <div className="group h-full rounded-xl border border-slate-200 overflow-hidden transition-all duration-300 hover:border-slate-300 hover:shadow-card-hover flex flex-col">
                     <div
-                      className={`aspect-[16/10] bg-gradient-to-br ${project.gradient} flex items-center justify-center`}
+                      className={`aspect-[16/10] bg-gradient-to-br ${project.gradient} flex items-center justify-center relative overflow-hidden`}
                     >
-                      <div className="text-center p-6">
-                        <div className="mx-auto w-14 h-14 rounded-2xl bg-slate-900/5 border border-slate-900/10 flex items-center justify-center mb-4">
+                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1)_0%,transparent_70%)]" />
+                      <div className="text-center p-6 relative z-10">
+                        <div className="mx-auto w-14 h-14 rounded-2xl bg-slate-900/5 border border-slate-900/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                           <Zap className="h-7 w-7 text-slate-400" />
                         </div>
                         <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide">

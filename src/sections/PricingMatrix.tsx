@@ -8,7 +8,7 @@ const config = electricianConfig;
 
 export function PricingMatrix() {
   return (
-    <section id="pricing" className="bg-slate-50 scroll-mt-20">
+    <section id="pricing" className="bg-slate-50 scroll-mt-20 content-visibility-auto">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
         <FadeIn>
           <div className="text-center max-w-2xl mx-auto mb-12">
@@ -28,7 +28,7 @@ export function PricingMatrix() {
         <StaggerContainer className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {config.pricing.map((item) => (
             <StaggerItem key={item.id}>
-              <div className="h-full rounded-xl border border-slate-200 bg-white p-6 transition-all hover:border-slate-300 hover:shadow-md flex flex-col">
+              <div className="group h-full rounded-xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-slate-300 hover:shadow-card-hover flex flex-col">
                 <h3 className="text-lg font-bold text-slate-900 mb-1">{item.service}</h3>
                 <div className="flex items-baseline gap-2 mb-3">
                   <span className="text-2xl font-bold text-slate-900">{item.basePrice}</span>
@@ -40,7 +40,7 @@ export function PricingMatrix() {
                 <p className="text-sm text-slate-600 leading-relaxed flex-1">{item.description}</p>
                 <a
                   href="#diagnostic"
-                  className="mt-5 inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 transition-all hover:border-amber-500 hover:text-amber-600 min-h-[48px]"
+                  className="mt-5 inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 transition-all duration-300 group-hover:border-amber-500 group-hover:text-amber-600 min-h-[48px]"
                 >
                   Get Exact Quote
                   <ArrowRight className="h-4 w-4" />

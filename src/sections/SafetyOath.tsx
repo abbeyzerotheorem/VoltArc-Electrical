@@ -1,38 +1,21 @@
 "use client";
 
-import { Shield, SprayCan, UserCheck, ThumbsUp } from "lucide-react";
+import { Shield, UserCheck, Sparkles, ThumbsUp } from "lucide-react";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/FadeIn";
+import { electricianConfig } from "@/data/electrician";
 
-const promises = [
-  {
-    icon: Shield,
-    title: "100% Satisfaction Guarantee",
-    description:
-      "If you're not completely satisfied with our work, we'll come back and make it right — at no additional charge. That's the VoltArc promise.",
-  },
-  {
-    icon: UserCheck,
-    title: "Background-Checked Technicians",
-    description:
-      "Every team member undergoes comprehensive federal background checks, drug screening, and continuous ethical training before entering your home.",
-  },
-  {
-    icon: SprayCan,
-    title: "Meticulous Cleanliness Protocol",
-    description:
-      "Shoe boot covers on every visit. Drop cloths on every work surface. Complete debris removal and cleanup before we leave. Your home stays pristine.",
-  },
-  {
-    icon: ThumbsUp,
-    title: "No-Risk Upfront Pricing",
-    description:
-      "You approve the exact price before any work begins. No hourly runarounds, no surprise charges, no hidden fees — guaranteed.",
-  },
-];
+const config = electricianConfig;
+
+const iconMap: Record<string, typeof Shield> = {
+  Shield,
+  UserCheck,
+  Sparkles,
+  ThumbsUp,
+};
 
 export function SafetyOath() {
   return (
-    <section className="bg-white">
+    <section className="bg-white content-visibility-auto">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
         <FadeIn>
           <div className="text-center max-w-2xl mx-auto mb-12">
@@ -50,17 +33,20 @@ export function SafetyOath() {
         </FadeIn>
 
         <StaggerContainer className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {promises.map((promise) => (
-            <StaggerItem key={promise.title}>
-              <div className="h-full rounded-xl border border-slate-200 bg-slate-50 p-6 transition-all hover:border-slate-300 hover:bg-white">
-                <div className="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-xl bg-blue-50">
-                  <promise.icon className="h-6 w-6 text-blue-600" />
+          {config.safetyPromises.map((promise) => {
+            const Icon = iconMap[promise.iconName] || Shield;
+            return (
+              <StaggerItem key={promise.title}>
+                <div className="group h-full rounded-xl border border-slate-200 bg-slate-50 p-6 transition-all duration-300 hover:border-blue-200 hover:bg-white hover:shadow-card-hover">
+                  <div className="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-xl bg-blue-50 group-hover:bg-blue-100 transition-colors duration-300">
+                    <Icon className="h-6 w-6 text-blue-600" />
+                  </div>
+                  <h3 className="text-base font-bold text-slate-900 mb-2">{promise.title}</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">{promise.description}</p>
                 </div>
-                <h3 className="text-base font-bold text-slate-900 mb-2">{promise.title}</h3>
-                <p className="text-sm text-slate-600 leading-relaxed">{promise.description}</p>
-              </div>
-            </StaggerItem>
-          ))}
+              </StaggerItem>
+            );
+          })}
         </StaggerContainer>
       </div>
     </section>

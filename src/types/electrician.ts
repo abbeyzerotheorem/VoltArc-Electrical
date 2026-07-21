@@ -59,6 +59,29 @@ export interface Testimonial {
   serviceType: string;
 }
 
+export interface GalleryProject {
+  title: string;
+  category: string;
+  description: string;
+  gradient: string;
+}
+
+export interface SafetyPromise {
+  title: string;
+  description: string;
+  iconName: string;
+}
+
+export interface CredibilityCredential {
+  iconName: string;
+  title: string;
+  detail: string;
+  subtext: string;
+  color: string;
+  bg: string;
+  border: string;
+}
+
 export interface ElectricianConfig {
   brand: {
     name: string;
@@ -77,4 +100,7 @@ export interface ElectricianConfig {
   diagnosticOptions: DiagnosticOption[];
   faqs: FAQItem[];
   testimonials: Testimonial[];
+  galleryProjects: GalleryProject[];
+  safetyPromises: SafetyPromise[];
+  credentials: CredibilityCredential[];
 }

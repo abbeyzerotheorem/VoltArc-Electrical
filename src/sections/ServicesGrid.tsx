@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { Zap, Building2, Home, Smartphone, AlertTriangle, ArrowRight } from "lucide-react";
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/FadeIn";
+import { motion, AnimatePresence } from "framer-motion";
+import { FadeIn } from "@/components/FadeIn";
 import { electricianConfig } from "@/data/electrician";
 import type { ServiceCategory, UrgencyRating } from "@/types/electrician";
 
@@ -31,7 +32,7 @@ export function ServicesGrid() {
       : config.services.filter((s) => s.category === activeTab);
 
   return (
-    <section className="bg-white">
+    <section className="bg-white content-visibility-auto">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
         <FadeIn>
           <div className="text-center max-w-2xl mx-auto mb-12">
@@ -54,7 +55,7 @@ export function ServicesGrid() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-all min-h-[48px] ${
+                className={`inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-all duration-300 min-h-[48px] ${
                   activeTab === tab.id
                     ? "bg-slate-900 text-white shadow-md"
                     : "bg-slate-100 text-slate-600 hover:bg-slate-200"
@@ -67,42 +68,55 @@ export function ServicesGrid() {
           </div>
         </FadeIn>
 
-        <StaggerContainer className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3" staggerDelay={0.07}>
-          {filtered.map((service) => {
-            const urgency = urgencyStyles[service.urgencyRating];
-            return (
-              <StaggerItem key={service.id}>
-                <div className="group relative h-full rounded-xl border border-slate-200 bg-white p-6 transition-all hover:border-slate-300 hover:shadow-lg glow-border flex flex-col">
-                  <div className="flex items-start justify-between mb-3">
-                    <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${urgency.bg} ${urgency.color}`}>
-                      {urgency.label}
-                    </span>
-                    <span className="text-xs text-slate-500 capitalize">{service.category}</span>
-                  </div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-2">{service.title}</h3>
-                  <p className="text-sm text-slate-600 leading-relaxed flex-1">{service.description}</p>
-                  <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between">
-                    <div>
-                      <div className="text-xs text-slate-500">Starting from</div>
-                      <div className="text-lg font-bold text-slate-900">{service.estimatedBaseCost}</div>
+        <motion.div
+          layout
+          className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+          transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+        >
+          <AnimatePresence mode="popLayout">
+            {filtered.map((service) => {
+              const urgency = urgencyStyles[service.urgencyRating];
+              return (
+                <motion.div
+                  key={service.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+                >
+                  <div className="group relative h-full rounded-xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-slate-300 hover:shadow-card-hover glow-border flex flex-col">
+                    <div className="flex items-start justify-between mb-3">
+                      <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${urgency.bg} ${urgency.color}`}>
+                        {urgency.label}
+                      </span>
+                      <span className="text-xs text-slate-500 capitalize">{service.category}</span>
                     </div>
-                    <div className="text-right">
-                      <div className="text-xs text-slate-500">Avg. time</div>
-                      <div className="text-sm font-semibold text-slate-700">{service.averageCompletionTime}</div>
+                    <h3 className="text-lg font-bold text-slate-900 mb-2">{service.title}</h3>
+                    <p className="text-sm text-slate-600 leading-relaxed flex-1">{service.description}</p>
+                    <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between">
+                      <div>
+                        <div className="text-xs text-slate-500">Starting from</div>
+                        <div className="text-lg font-bold text-slate-900">{service.estimatedBaseCost}</div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-xs text-slate-500">Avg. time</div>
+                        <div className="text-sm font-semibold text-slate-700">{service.averageCompletionTime}</div>
+                      </div>
                     </div>
+                    <a
+                      href="#diagnostic"
+                      className="mt-4 inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 transition-all duration-300 hover:border-amber-500 hover:text-amber-600 min-h-[48px]"
+                    >
+                      Book Now
+                      <ArrowRight className="h-4 w-4" />
+                    </a>
                   </div>
-                  <a
-                    href="#diagnostic"
-                    className="mt-4 inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 transition-all hover:border-amber-500 hover:text-amber-600 min-h-[48px]"
-                  >
-                    Book Now
-                    <ArrowRight className="h-4 w-4" />
-                  </a>
-                </div>
-              </StaggerItem>
-            );
-          })}
-        </StaggerContainer>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
+        </motion.div>
       </div>
     </section>
   );

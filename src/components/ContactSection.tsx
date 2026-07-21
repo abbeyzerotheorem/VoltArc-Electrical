@@ -1,32 +1,94 @@
 "use client";
 
-import { useState } from "react";
-import { Send, Phone, Mail, MapPin, Clock, CheckCircle2, Loader2 } from "lucide-react";
+import { useState, useId } from "react";
+import { Send, Phone, Mail, MapPin, Clock, CheckCircle2, Loader2, AlertCircle } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { FadeIn } from "@/components/FadeIn";
 import { electricianConfig } from "@/data/electrician";
 
 const config = electricianConfig;
 
+interface FormErrors {
+  name?: string;
+  phone?: string;
+  email?: string;
+  service?: string;
+  message?: string;
+}
+
+function validateForm(data: FormData): FormErrors {
+  const errors: FormErrors = {};
+  const name = data.get("name") as string;
+  const phone = data.get("phone") as string;
+  const email = data.get("email") as string;
+  const service = data.get("service") as string;
+  const message = data.get("message") as string;
+
+  if (!name || name.trim().length < 2) {
+    errors.name = "Please enter your full name";
+  }
+  if (!phone || phone.replace(/\D/g, "").length < 10) {
+    errors.phone = "Please enter a valid phone number";
+  }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errors.email = "Please enter a valid email address";
+  }
+  if (!service) {
+    errors.service = "Please select a service";
+  }
+  if (message && message.length > 500) {
+    errors.message = "Message must be under 500 characters";
+  }
+  return errors;
+}
+
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const formId = useId();
+
+  function handleBlur(field: string) {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const validationErrors = validateForm(formData);
+
+    setTouched({ name: true, phone: true, email: true, service: true, message: true });
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    setErrors({});
     setLoading(true);
-    // Simulate form submission
     await new Promise((r) => setTimeout(r, 1500));
     setLoading(false);
     setSubmitted(true);
+  }
+
+  function getFieldError(field: keyof FormErrors): string | undefined {
+    if (!touched[field]) return undefined;
+    return errors[field];
   }
 
   if (submitted) {
     return (
       <FadeIn>
         <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-12 text-center">
-          <div className="mx-auto w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center mb-6">
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            className="mx-auto w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center mb-6"
+          >
             <CheckCircle2 className="h-8 w-8 text-emerald-600" />
-          </div>
+          </motion.div>
           <h3 className="text-2xl font-bold text-slate-900 mb-2">Request Submitted</h3>
           <p className="text-slate-600 max-w-md mx-auto">
             Thank you! A dispatcher will contact you within 30 minutes during business hours.
@@ -46,48 +108,115 @@ export function ContactForm() {
 
   return (
     <FadeIn>
-      <form onSubmit={handleSubmit} className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+      <form onSubmit={handleSubmit} noValidate className="rounded-2xl border border-slate-200 bg-white p-8 shadow-card">
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
-            <label htmlFor="name" className="block text-sm font-semibold text-slate-700 mb-1.5">Full Name</label>
+            <label htmlFor={`${formId}-name`} className="block text-sm font-semibold text-slate-700 mb-1.5">
+              Full Name <span className="text-red-500">*</span>
+            </label>
             <input
               type="text"
-              id="name"
+              id={`${formId}-name`}
               name="name"
               required
-              className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 outline-none transition-all min-h-[48px]"
+              onBlur={() => handleBlur("name")}
+              className={`w-full rounded-xl border px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:ring-2 outline-none transition-all duration-200 min-h-[48px] ${
+                getFieldError("name")
+                  ? "border-red-400 focus:border-red-500 focus:ring-red-500/20"
+                  : "border-slate-200 focus:border-amber-500 focus:ring-amber-500/20"
+              }`}
               placeholder="John Smith"
             />
+            <AnimatePresence>
+              {getFieldError("name") && (
+                <motion.p
+                  initial={{ opacity: 0, y: -4, height: 0 }}
+                  animate={{ opacity: 1, y: 0, height: "auto" }}
+                  exit={{ opacity: 0, y: -4, height: 0 }}
+                  className="text-xs text-red-600 mt-1 flex items-center gap-1"
+                >
+                  <AlertCircle className="h-3 w-3" />
+                  {getFieldError("name")}
+                </motion.p>
+              )}
+            </AnimatePresence>
           </div>
           <div>
-            <label htmlFor="phone" className="block text-sm font-semibold text-slate-700 mb-1.5">Phone Number</label>
+            <label htmlFor={`${formId}-phone`} className="block text-sm font-semibold text-slate-700 mb-1.5">
+              Phone Number <span className="text-red-500">*</span>
+            </label>
             <input
               type="tel"
-              id="phone"
+              id={`${formId}-phone`}
               name="phone"
               required
-              className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 outline-none transition-all min-h-[48px]"
+              onBlur={() => handleBlur("phone")}
+              className={`w-full rounded-xl border px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:ring-2 outline-none transition-all duration-200 min-h-[48px] ${
+                getFieldError("phone")
+                  ? "border-red-400 focus:border-red-500 focus:ring-red-500/20"
+                  : "border-slate-200 focus:border-amber-500 focus:ring-amber-500/20"
+              }`}
               placeholder="(512) 555-0000"
             />
+            <AnimatePresence>
+              {getFieldError("phone") && (
+                <motion.p
+                  initial={{ opacity: 0, y: -4, height: 0 }}
+                  animate={{ opacity: 1, y: 0, height: "auto" }}
+                  exit={{ opacity: 0, y: -4, height: 0 }}
+                  className="text-xs text-red-600 mt-1 flex items-center gap-1"
+                >
+                  <AlertCircle className="h-3 w-3" />
+                  {getFieldError("phone")}
+                </motion.p>
+              )}
+            </AnimatePresence>
           </div>
           <div className="sm:col-span-2">
-            <label htmlFor="email" className="block text-sm font-semibold text-slate-700 mb-1.5">Email Address</label>
+            <label htmlFor={`${formId}-email`} className="block text-sm font-semibold text-slate-700 mb-1.5">
+              Email Address <span className="text-red-500">*</span>
+            </label>
             <input
               type="email"
-              id="email"
+              id={`${formId}-email`}
               name="email"
               required
-              className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 outline-none transition-all min-h-[48px]"
+              onBlur={() => handleBlur("email")}
+              className={`w-full rounded-xl border px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:ring-2 outline-none transition-all duration-200 min-h-[48px] ${
+                getFieldError("email")
+                  ? "border-red-400 focus:border-red-500 focus:ring-red-500/20"
+                  : "border-slate-200 focus:border-amber-500 focus:ring-amber-500/20"
+              }`}
               placeholder="john@example.com"
             />
+            <AnimatePresence>
+              {getFieldError("email") && (
+                <motion.p
+                  initial={{ opacity: 0, y: -4, height: 0 }}
+                  animate={{ opacity: 1, y: 0, height: "auto" }}
+                  exit={{ opacity: 0, y: -4, height: 0 }}
+                  className="text-xs text-red-600 mt-1 flex items-center gap-1"
+                >
+                  <AlertCircle className="h-3 w-3" />
+                  {getFieldError("email")}
+                </motion.p>
+              )}
+            </AnimatePresence>
           </div>
           <div>
-            <label htmlFor="service" className="block text-sm font-semibold text-slate-700 mb-1.5">Service Needed</label>
+            <label htmlFor={`${formId}-service`} className="block text-sm font-semibold text-slate-700 mb-1.5">
+              Service Needed <span className="text-red-500">*</span>
+            </label>
             <select
-              id="service"
+              id={`${formId}-service`}
               name="service"
               required
-              className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 outline-none transition-all min-h-[48px] bg-white"
+              onBlur={() => handleBlur("service")}
+              className={`w-full rounded-xl border px-4 py-3 text-sm text-slate-900 focus:ring-2 outline-none transition-all duration-200 min-h-[48px] bg-white ${
+                getFieldError("service")
+                  ? "border-red-400 focus:border-red-500 focus:ring-red-500/20"
+                  : "border-slate-200 focus:border-amber-500 focus:ring-amber-500/20"
+              }`}
             >
               <option value="">Select a service</option>
               {config.services.map((s) => (
@@ -95,14 +224,29 @@ export function ContactForm() {
               ))}
               <option value="other">Other / Not Sure</option>
             </select>
+            <AnimatePresence>
+              {getFieldError("service") && (
+                <motion.p
+                  initial={{ opacity: 0, y: -4, height: 0 }}
+                  animate={{ opacity: 1, y: 0, height: "auto" }}
+                  exit={{ opacity: 0, y: -4, height: 0 }}
+                  className="text-xs text-red-600 mt-1 flex items-center gap-1"
+                >
+                  <AlertCircle className="h-3 w-3" />
+                  {getFieldError("service")}
+                </motion.p>
+              )}
+            </AnimatePresence>
           </div>
           <div>
-            <label htmlFor="urgency" className="block text-sm font-semibold text-slate-700 mb-1.5">How Urgent?</label>
+            <label htmlFor={`${formId}-urgency`} className="block text-sm font-semibold text-slate-700 mb-1.5">
+              How Urgent?
+            </label>
             <select
-              id="urgency"
+              id={`${formId}-urgency`}
               name="urgency"
               required
-              className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 outline-none transition-all min-h-[48px] bg-white"
+              className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 outline-none transition-all duration-200 min-h-[48px] bg-white"
             >
               <option value="emergency">Emergency — Need help now</option>
               <option value="soon">Soon — Within a few days</option>
@@ -110,20 +254,40 @@ export function ContactForm() {
             </select>
           </div>
           <div className="sm:col-span-2">
-            <label htmlFor="message" className="block text-sm font-semibold text-slate-700 mb-1.5">Describe Your Issue</label>
+            <label htmlFor={`${formId}-message`} className="block text-sm font-semibold text-slate-700 mb-1.5">
+              Describe Your Issue
+            </label>
             <textarea
-              id="message"
+              id={`${formId}-message`}
               name="message"
               rows={4}
-              className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 outline-none transition-all resize-none"
+              maxLength={500}
+              className={`w-full rounded-xl border px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:ring-2 outline-none transition-all duration-200 resize-none ${
+                getFieldError("message")
+                  ? "border-red-400 focus:border-red-500 focus:ring-red-500/20"
+                  : "border-slate-200 focus:border-amber-500 focus:ring-amber-500/20"
+              }`}
               placeholder="Tell us about the electrical issue you're experiencing..."
             />
+            <AnimatePresence>
+              {getFieldError("message") && (
+                <motion.p
+                  initial={{ opacity: 0, y: -4, height: 0 }}
+                  animate={{ opacity: 1, y: 0, height: "auto" }}
+                  exit={{ opacity: 0, y: -4, height: 0 }}
+                  className="text-xs text-red-600 mt-1 flex items-center gap-1"
+                >
+                  <AlertCircle className="h-3 w-3" />
+                  {getFieldError("message")}
+                </motion.p>
+              )}
+            </AnimatePresence>
           </div>
         </div>
         <button
           type="submit"
           disabled={loading}
-          className="mt-6 w-full inline-flex items-center justify-center gap-2 rounded-xl bg-amber-500 px-6 py-3.5 text-sm font-bold text-slate-950 transition-all hover:bg-amber-400 hover:shadow-lg hover:shadow-amber-500/20 disabled:opacity-50 disabled:cursor-not-allowed min-h-[56px]"
+          className="mt-6 w-full inline-flex items-center justify-center gap-2 rounded-xl bg-amber-500 px-6 py-3.5 text-sm font-bold text-slate-950 transition-all duration-300 hover:bg-amber-400 hover:shadow-glow-amber disabled:opacity-50 disabled:cursor-not-allowed min-h-[56px]"
         >
           {loading ? (
             <>
@@ -149,7 +313,7 @@ export function ContactInfo() {
   return (
     <FadeIn delay={0.15}>
       <div className="space-y-6">
-        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
           <h3 className="text-lg font-bold text-slate-900 mb-4">Contact Information</h3>
           <div className="space-y-4">
             <a
@@ -197,7 +361,7 @@ export function ContactInfo() {
           </div>
         </div>
 
-        <div className="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm">
+        <div className="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-card">
           <div className="p-6 pb-4">
             <h3 className="text-lg font-bold text-slate-900 mb-1">Our Location</h3>
             <p className="text-sm text-slate-500">4821 Industrial Blvd, Suite 200, Austin, TX 78745</p>
