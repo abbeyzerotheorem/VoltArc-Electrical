@@ -10,6 +10,7 @@ import { Testimonials } from "@/sections/Testimonials";
 import { FAQAccordion } from "@/sections/FAQAccordion";
 import { Footer } from "@/sections/Footer";
 import { MobileRibbon } from "@/sections/MobileRibbon";
+import { StickyCTA } from "@/components/StickyCTA";
 
 export default function Home() {
   return (
@@ -28,6 +29,7 @@ export default function Home() {
       </main>
       <Footer />
       <MobileRibbon />
+      <StickyCTA />
     </>
   );
 }

@@ -49,7 +49,7 @@ export function DiagnosticTool() {
 
   return (
     <section id="diagnostic" className="bg-slate-50 scroll-mt-20 content-visibility-auto">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 sm:py-28">
         <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
           {/* Left column — context & result */}
           <FadeIn className="lg:col-span-2 lg:sticky lg:top-28">
