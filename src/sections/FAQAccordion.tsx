@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, HelpCircle } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/FadeIn";
 import { electricianConfig } from "@/data/electrician";
@@ -12,14 +12,10 @@ export function FAQAccordion() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="bg-white content-visibility-auto">
+    <section className="bg-slate-50 content-visibility-auto">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-20">
         <FadeIn>
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-100 px-4 py-1.5 text-sm font-semibold text-slate-700 mb-4">
-              <HelpCircle className="h-4 w-4" />
-              Frequently Asked Questions
-            </div>
+          <div className="mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900">
               Common Electrical Questions
             </h2>
@@ -31,7 +27,9 @@ export function FAQAccordion() {
             const isOpen = openIndex === index;
             return (
               <StaggerItem key={faq.question}>
-                <div className="rounded-xl border border-slate-200 overflow-hidden transition-colors duration-300 hover:border-slate-300">
+                <div className={`rounded-xl border overflow-hidden transition-colors duration-300 ${
+                  isOpen ? "border-amber-300 bg-white shadow-card" : "border-slate-200 bg-white hover:border-slate-300"
+                }`}>
                   <button
                     onClick={() => setOpenIndex(isOpen ? null : index)}
                     className="flex w-full items-center justify-between gap-4 p-5 text-left min-h-[48px]"
@@ -43,7 +41,7 @@ export function FAQAccordion() {
                       transition={{ type: "spring", stiffness: 300, damping: 25 }}
                       className="shrink-0"
                     >
-                      <ChevronDown className="h-5 w-5 text-slate-400" />
+                      <ChevronDown className={`h-5 w-5 transition-colors ${isOpen ? "text-amber-500" : "text-slate-400"}`} />
                     </motion.div>
                   </button>
                   <AnimatePresence initial={false}>

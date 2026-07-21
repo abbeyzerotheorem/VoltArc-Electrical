@@ -1,11 +1,17 @@
 "use client";
 
-import { Phone, ArrowRight, Shield, Zap, Award, Star, Clock, Users } from "lucide-react";
+import { Phone, ArrowRight, Shield, Star, Clock, Users, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { FadeIn } from "@/components/FadeIn";
 import { electricianConfig } from "@/data/electrician";
 
 const config = electricianConfig;
+
+const trustBadges = [
+  { icon: Star, label: `${config.trust.rating}★ Google Rating`, color: "text-amber-400" },
+  { icon: Shield, label: "Licensed & Insured", color: "text-emerald-400" },
+  { icon: Clock, label: "24/7 Emergency", color: "text-blue-400" },
+];
 
 function ElectricalCircuit() {
   return (
@@ -15,7 +21,6 @@ function ElectricalCircuit() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* Grid pattern */}
       <defs>
         <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
           <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(100,116,139,0.08)" strokeWidth="0.5" />
@@ -48,7 +53,6 @@ function ElectricalCircuit() {
 
       <rect width="400" height="300" fill="url(#grid)" />
 
-      {/* Main horizontal wires */}
       <motion.path
         d="M 0 100 L 120 100 L 160 140 L 240 140 L 280 100 L 400 100"
         stroke="rgba(100,116,139,0.15)"
@@ -62,7 +66,6 @@ function ElectricalCircuit() {
         fill="none"
       />
 
-      {/* Vertical connectors */}
       <motion.path
         d="M 160 60 L 160 140"
         stroke="rgba(100,116,139,0.12)"
@@ -88,7 +91,6 @@ function ElectricalCircuit() {
         fill="none"
       />
 
-      {/* Animated energy pulses along wires */}
       <motion.path
         d="M 0 100 L 120 100 L 160 140 L 240 140 L 280 100 L 400 100"
         stroke="url(#wireGrad)"
@@ -110,7 +112,6 @@ function ElectricalCircuit() {
         transition={{ duration: 3.5, repeat: Infinity, ease: "linear", repeatDelay: 0.5, delay: 1.5 }}
       />
 
-      {/* Junction nodes with pulse */}
       {[
         { cx: 120, cy: 100, color: "#F59E0B", delay: 0 },
         { cx: 160, cy: 140, color: "#F59E0B", delay: 0.5 },
@@ -154,7 +155,6 @@ function ElectricalCircuit() {
             animate={{ scale: 1 }}
             transition={{ delay: node.delay + 0.7, duration: 0.3 }}
           />
-          {/* Pulsing ring */}
           <motion.circle
             cx={node.cx}
             cy={node.cy}
@@ -175,7 +175,6 @@ function ElectricalCircuit() {
         </g>
       ))}
 
-      {/* Central panel box */}
       <motion.rect
         x="140"
         y="105"
@@ -202,7 +201,6 @@ function ElectricalCircuit() {
         transition={{ duration: 3, repeat: Infinity }}
       />
 
-      {/* Panel icon */}
       <motion.g
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -214,7 +212,6 @@ function ElectricalCircuit() {
         <rect x="196" y="132" width="24" height="6" rx="2" fill="#F59E0B" opacity="0.6" />
         <rect x="168" y="144" width="52" height="6" rx="2" fill="rgba(255,255,255,0.15)" />
         <rect x="180" y="156" width="28" height="8" rx="2" fill="rgba(245,158,11,0.4)" />
-        {/* Animated status LED */}
         <motion.circle
           cx="230"
           cy="158"
@@ -225,7 +222,6 @@ function ElectricalCircuit() {
         />
       </motion.g>
 
-      {/* Floating sparks */}
       {[
         { x: 100, y: 80, delay: 2 },
         { x: 300, y: 120, delay: 3.5 },
@@ -279,8 +275,8 @@ export function HeroSection() {
 
             <FadeIn delay={0.2}>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1]">
-                Safe. Professional. Fast.
-                <span className="block text-amber-500 mt-2">Done Right the First Time.</span>
+                Electrical Emergency?
+                <span className="block text-amber-500 mt-2">We&rsquo;re There in 35 Minutes.</span>
               </h1>
             </FadeIn>
 
@@ -292,41 +288,59 @@ export function HeroSection() {
               </p>
             </FadeIn>
 
+            <FadeIn delay={0.35}>
+              <div className="mt-5 flex flex-wrap items-center gap-3">
+                {trustBadges.map((badge) => (
+                  <span
+                    key={badge.label}
+                    className="inline-flex items-center gap-1.5 rounded-lg border border-slate-800 bg-slate-900/60 px-3 py-1.5 text-xs font-semibold text-slate-300"
+                  >
+                    <badge.icon className={`h-3.5 w-3.5 ${badge.color}`} />
+                    {badge.label}
+                  </span>
+                ))}
+              </div>
+            </FadeIn>
+
             <FadeIn delay={0.4}>
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
                 <a
-                  href="#diagnostic"
+                  href={`tel:${config.emergency.phone.replace(/\D/g, "")}`}
                   className="inline-flex items-center justify-center gap-2 rounded-xl bg-amber-500 px-8 py-4 text-base font-bold text-slate-950 transition-all duration-300 hover:bg-amber-400 hover:shadow-glow-amber min-h-[56px]"
                 >
-                  <Zap className="h-5 w-5" />
-                  Book Service Online
-                  <ArrowRight className="h-4 w-4" />
+                  <Phone className="h-5 w-5" />
+                  Call Emergency Line
                 </a>
                 <a
-                  href={`tel:${config.emergency.phone.replace(/\D/g, "")}`}
+                  href="#diagnostic"
                   className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-slate-700 px-8 py-4 text-base font-bold text-white transition-all duration-300 hover:border-amber-500 hover:text-amber-500 min-h-[56px]"
                 >
-                  <Phone className="h-5 w-5" />
-                  {config.emergency.phone}
+                  Book Online
+                  <ArrowRight className="h-4 w-4" />
                 </a>
               </div>
             </FadeIn>
 
             <FadeIn delay={0.5}>
-              <div className="mt-10 flex items-center gap-4 sm:gap-6 text-sm text-slate-500 flex-wrap">
+              <div className="mt-8 flex items-center gap-4 sm:gap-6 text-sm text-slate-500 flex-wrap">
                 <span className="inline-flex items-center gap-1.5">
-                  <Award className="h-4 w-4 text-amber-500" />
-                  Est. {config.brand.founded}
+                  <CheckCircle2 className="h-4 w-4 text-emerald-500" />
+                  Free Estimates
                 </span>
-                <span className="hidden sm:inline">•</span>
-                <span>{config.trust.yearsInBusiness} Years in {config.brand.state}</span>
-                <span className="hidden sm:inline">•</span>
-                <span>24/7 Emergency</span>
+                <span className="hidden sm:inline">·</span>
+                <span className="inline-flex items-center gap-1.5">
+                  <CheckCircle2 className="h-4 w-4 text-emerald-500" />
+                  No Hidden Fees
+                </span>
+                <span className="hidden sm:inline">·</span>
+                <span className="inline-flex items-center gap-1.5">
+                  <CheckCircle2 className="h-4 w-4 text-emerald-500" />
+                  5-Year Warranty
+                </span>
               </div>
             </FadeIn>
           </div>
 
-          {/* Right side — animated circuit visualization */}
           <div className="hidden lg:block relative">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -336,7 +350,6 @@ export function HeroSection() {
             >
               <ElectricalCircuit />
 
-              {/* Central overlay text */}
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -353,7 +366,6 @@ export function HeroSection() {
               </div>
             </motion.div>
 
-            {/* Floating stat cards */}
             <motion.div
               initial={{ opacity: 0, x: -30, y: 20 }}
               animate={{ opacity: 1, x: 0, y: 0 }}
@@ -404,6 +416,26 @@ export function HeroSection() {
                 </div>
               </div>
             </motion.div>
+          </div>
+        </div>
+      </div>
+
+      {/* Trust metrics strip — replaces CredibilityBoard */}
+      <div className="relative border-t border-slate-800/60 bg-slate-900/40">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-slate-800/60">
+            {[
+              { value: `${config.trust.rating}★`, label: "Google Rating", sub: `${config.trust.totalReviews}+ reviews` },
+              { value: `${config.trust.masterElectricians}`, label: "Master Electricians", sub: "Licensed & insured" },
+              { value: config.emergency.averageOnSiteTime, label: "Avg. Response", sub: "24/7/365 dispatch" },
+              { value: `${config.trust.yearsInBusiness}+`, label: "Years Serving TX", sub: `Since ${config.brand.founded}` },
+            ].map((metric) => (
+              <div key={metric.label} className="py-6 px-4 sm:px-6 text-center">
+                <div className="text-xl sm:text-2xl font-bold text-white">{metric.value}</div>
+                <div className="text-xs sm:text-sm font-semibold text-slate-400 mt-0.5">{metric.label}</div>
+                <div className="text-[10px] sm:text-xs text-slate-600 mt-0.5">{metric.sub}</div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

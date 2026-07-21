@@ -1,7 +1,6 @@
 import { Navbar } from "@/components/Navbar";
 import { EmergencyHeader } from "@/sections/EmergencyHeader";
 import { HeroSection } from "@/sections/HeroSection";
-import { CredibilityBoard } from "@/sections/CredibilityBoard";
 import { DiagnosticTool } from "@/sections/DiagnosticTool";
 import { ServicesGrid } from "@/sections/ServicesGrid";
 import { CredibilityVault } from "@/sections/CredibilityVault";
@@ -19,7 +18,6 @@ export default function Home() {
       <Navbar />
       <main id="main-content" className="flex-1">
         <HeroSection />
-        <CredibilityBoard />
         <DiagnosticTool />
         <ServicesGrid />
         <CredibilityVault />

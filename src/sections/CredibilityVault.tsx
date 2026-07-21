@@ -1,7 +1,7 @@
 "use client";
 
 import { Shield, ShieldCheck, Award, FileCheck, BadgeCheck } from "lucide-react";
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/FadeIn";
+import { FadeIn } from "@/components/FadeIn";
 import { electricianConfig } from "@/data/electrician";
 
 const config = electricianConfig;
@@ -16,40 +16,40 @@ const iconMap: Record<string, typeof Shield> = {
 
 export function CredibilityVault() {
   return (
-    <section className="bg-slate-950 content-visibility-auto">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
+    <section className="bg-white content-visibility-auto">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <FadeIn>
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <div className="inline-flex items-center gap-2 rounded-full border border-slate-800 bg-slate-900 px-4 py-1.5 text-sm font-semibold text-slate-300 mb-4">
-              <ShieldCheck className="h-4 w-4 text-amber-500" />
-              Your Protection Guarantee
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
-              Licensed, Bonded & Insured — No Exceptions
+          <div className="mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">
+              Licensed, Bonded &amp; Insured
             </h2>
-            <p className="mt-4 text-lg text-slate-400">
+            <p className="mt-2 text-base text-slate-600">
               Every credential verified. Every technician certified. Every project protected.
             </p>
           </div>
         </FadeIn>
 
-        <StaggerContainer className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-          {config.credentials.map((cred) => {
-            const Icon = iconMap[cred.iconName] || Shield;
-            return (
-              <StaggerItem key={cred.title}>
-                <div className="group rounded-xl border border-slate-800 bg-slate-900/50 p-5 text-center transition-all duration-300 hover:border-slate-700 hover:bg-slate-900/80 hover:shadow-elevated">
-                  <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl ${cred.bg} mb-3 group-hover:scale-110 transition-transform duration-300`}>
-                    <Icon className={`h-6 w-6 ${cred.color}`} />
+        <FadeIn delay={0.1}>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            {config.credentials.map((cred) => {
+              const Icon = iconMap[cred.iconName] || Shield;
+              return (
+                <div
+                  key={cred.title}
+                  className="group flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4 transition-all duration-300 hover:border-slate-300 hover:bg-white hover:shadow-card-hover"
+                >
+                  <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${cred.bg} group-hover:scale-110 transition-transform duration-300`}>
+                    <Icon className={`h-5 w-5 ${cred.color}`} />
                   </div>
-                  <h3 className="text-sm font-bold text-white mb-1">{cred.title}</h3>
-                  <div className={`text-lg font-bold ${cred.color}`}>{cred.detail}</div>
-                  <div className="text-xs text-slate-500 mt-1">{cred.subtext}</div>
+                  <div className="min-w-0">
+                    <div className="text-sm font-bold text-slate-900 truncate">{cred.title}</div>
+                    <div className={`text-xs font-semibold ${cred.color}`}>{cred.detail}</div>
+                  </div>
                 </div>
-              </StaggerItem>
-            );
-          })}
-        </StaggerContainer>
+              );
+            })}
+          </div>
+        </FadeIn>
       </div>
     </section>
   );
